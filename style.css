@@ -235,7 +235,7 @@ a {
 }
 
 /* ============================================================
-   GLASS NAVIGATION
+   GLASS NAVIGATION - FIXED WITH SMALLER BUTTONS
    ============================================================ */
 .navbar {
     position: fixed;
@@ -249,7 +249,7 @@ a {
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 60px;
-    padding: 8px 24px;
+    padding: 6px 20px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     transition: 0.35s ease;
 }
@@ -269,7 +269,7 @@ a {
     top: 16px;
 }
 .nav-brand {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #fff;
     letter-spacing: -0.5px;
@@ -282,63 +282,68 @@ a {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 .nav-links a {
-    padding: 10px 18px;
-    border-radius: 50px;
-    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 6px 14px;
+    border-radius: 30px;
+    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     letter-spacing: 0.2px;
     white-space: nowrap;
 }
 .nav-links a:hover {
     background: #ffffff;
     color: #000000 !important;
-    transform: scale(1.08) translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 .nav-links a.active {
     background: #ffffff;
     color: #000000;
+    transform: none !important;
+    box-shadow: none !important;
+    transition: none !important;
 }
 .nav-cta {
     background: rgba(255, 255, 255, 0.12) !important;
     color: #fff !important;
-    padding: 10px 20px !important;
-    border-radius: 50px !important;
-    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    padding: 6px 16px !important;
+    border-radius: 30px !important;
+    font-size: 0.8rem !important;
+    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 .nav-cta:hover {
     background: #ffffff !important;
     color: #000000 !important;
-    transform: scale(1.08) translateY(-3px) !important;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30) !important;
+    transform: scale(1.05) translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
 }
 .nav-cta i {
-    margin-right: 6px;
+    margin-right: 4px;
+    font-size: 0.75rem;
 }
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     background: none;
     border: none;
-    padding: 8px;
+    padding: 4px 6px;
     cursor: pointer;
     z-index: 1001;
 }
 .hamburger span {
     display: block;
-    width: 28px;
-    height: 3px;
+    width: 22px;
+    height: 2.5px;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 3px;
     transition: 0.3s ease;
 }
 
@@ -2286,7 +2291,7 @@ a {
    ============================================================ */
 @media (max-width: 768px) {
     .navbar {
-        padding: 8px 16px;
+        padding: 6px 14px;
         border-radius: 40px;
         width: 95%;
         top: 12px;
@@ -2296,6 +2301,14 @@ a {
     .hamburger {
         display: flex !important;
         z-index: 1002;
+        padding: 3px 5px !important;
+        gap: 3px !important;
+    }
+    
+    .hamburger span {
+        width: 18px !important;
+        height: 2px !important;
+        border-radius: 2px !important;
     }
     
     /* Hide desktop nav links - slide from right */
@@ -2310,7 +2323,7 @@ a {
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 80px 30px 40px;
-        gap: 8px;
+        gap: 6px;
         transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         border-left: 1px solid rgba(255, 255, 255, 0.06);
         overflow-y: auto;
@@ -2325,14 +2338,14 @@ a {
         right: 0;
     }
     
-    /* Mobile nav link styles */
+    /* Mobile nav link styles - smaller */
     .nav-links a {
-        padding: 10px 16px;
+        padding: 8px 14px !important;
         width: 100%;
         text-align: left;
-        font-size: 0.9rem;
+        font-size: 0.85rem !important;
         color: rgba(255, 255, 255, 0.8);
-        border-radius: 10px;
+        border-radius: 8px;
         transition: 0.3s ease;
         white-space: normal;
     }
@@ -2349,16 +2362,16 @@ a {
         color: #67C7C6 !important;
     }
     
-    /* Mobile CTA button */
+    /* Mobile CTA button - smaller */
     .nav-cta {
         background: rgba(103, 199, 198, 0.15) !important;
         color: #67C7C6 !important;
-        margin-top: 8px;
+        margin-top: 6px;
         text-align: center !important;
         justify-content: center;
         border: 1px solid rgba(103, 199, 198, 0.2);
-        padding: 14px 20px !important;
-        font-size: 0.9rem !important;
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
         width: auto !important;
     }
     
@@ -2371,7 +2384,7 @@ a {
     
     /* Hamburger animation when active */
     .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        transform: rotate(45deg) translate(4px, 4px);
     }
     
     .hamburger.active span:nth-child(2) {
@@ -2380,19 +2393,19 @@ a {
     }
     
     .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
+        transform: rotate(-45deg) translate(4px, -4px);
     }
 }
 
 @media (max-width: 480px) {
     .navbar {
-        padding: 6px 14px;
-        border-radius: 35px;
+        padding: 5px 12px;
+        border-radius: 30px;
         top: 10px;
     }
     
     .nav-brand {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
     
     .nav-links {
@@ -2401,13 +2414,18 @@ a {
     }
     
     .nav-links a {
-        padding: 12px 16px;
-        font-size: 0.9rem;
-        border-radius: 10px;
+        padding: 7px 12px !important;
+        font-size: 0.8rem !important;
+        border-radius: 8px;
     }
     
     .hamburger span {
-        width: 24px;
-        height: 2.5px;
+        width: 16px !important;
+        height: 1.8px !important;
+    }
+    
+    .nav-cta {
+        padding: 7px 14px !important;
+        font-size: 0.8rem !important;
     }
 }
