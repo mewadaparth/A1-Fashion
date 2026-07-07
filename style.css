@@ -2327,12 +2327,12 @@ a {
     
     /* Mobile nav link styles */
     .nav-links a {
-        padding: 14px 20px;
+        padding: 10px 16px;
         width: 100%;
         text-align: left;
-        font-size: 1rem;
+        font-size: 0.9rem;
         color: rgba(255, 255, 255, 0.8);
-        border-radius: 12px;
+        border-radius: 10px;
         transition: 0.3s ease;
         white-space: normal;
     }
@@ -2353,12 +2353,13 @@ a {
     .nav-cta {
         background: rgba(103, 199, 198, 0.15) !important;
         color: #67C7C6 !important;
-        margin-top: 10px;
+        margin-top: 8px;
         text-align: center !important;
         justify-content: center;
         border: 1px solid rgba(103, 199, 198, 0.2);
         padding: 14px 20px !important;
-        width: 100%;
+        font-size: 0.9rem !important;
+        width: auto !important;
     }
     
     .nav-cta:hover {
