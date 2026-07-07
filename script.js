@@ -74,7 +74,14 @@
     });
 
     // ============================================================
-    // 3. ACTIVE NAV LINK - FIXED FOR DESKTOP (instant removal)
+    // 3. ACTIVE NAV LINK - SCROLL SPY (paused during programmatic scroll)
+    //    FIX: previously the scroll-spy and the click handler both
+    //    fought over the `.active` class while a smooth-scroll from
+    //    a nav click was still animating, causing multiple nav items
+    //    to appear highlighted/stuck at once (e.g. clicking Contact
+    //    would leave About/Products still looking active).
+    //    Now the scroll-spy pauses itself the moment a nav link is
+    //    clicked, and only resumes once scrolling has fully settled.
     // ============================================================
     const sections = document.querySelectorAll('section[id]');
     const navLinksAll = document.querySelectorAll('.nav-links a');
@@ -82,8 +89,16 @@
     // Store currently active link
     let currentActiveLink = null;
 
-    // Function to update active link - INSTANT removal on desktop
+    // True while a click-triggered smooth scroll is in progress
+    let isProgrammaticScroll = false;
+    let scrollEndTimer = null;
+
+    // Function to update active link based on scroll position
     function updateActiveLink() {
+        // Don't let scroll-spy override the link the user just clicked
+        // while the smooth-scroll animation is still playing
+        if (isProgrammaticScroll) return;
+
         let current = '';
         const scrollPosition = window.pageYOffset + 100;
         
@@ -125,6 +140,15 @@
             });
             ticking = true;
         }
+
+        // Detect when scrolling has actually stopped (covers both
+        // manual scrolling and the smooth programmatic scroll
+        // triggered by a nav click), then let scroll-spy resume.
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(function() {
+            isProgrammaticScroll = false;
+            updateActiveLink();
+        }, 150);
     });
 
     // Update on load
@@ -133,10 +157,13 @@
     });
 
     // ============================================================
-    // 4. FIX: CLICK HANDLER FOR NAV LINKS - INSTANT ACTIVE STATE
+    // 4. CLICK HANDLER FOR NAV LINKS - INSTANT ACTIVE STATE
     // ============================================================
     navLinksAll.forEach(function(link) {
         link.addEventListener('click', function(e) {
+            // Tell the scroll-spy to stand down until scrolling settles
+            isProgrammaticScroll = true;
+
             // INSTANTLY remove active class from ALL links
             navLinksAll.forEach(function(l) {
                 l.classList.remove('active');
@@ -145,15 +172,6 @@
             // INSTANTLY add active class to clicked link
             this.classList.add('active');
             currentActiveLink = this;
-
-            // Remove active class from other links (cleanup)
-            setTimeout(function() {
-                navLinksAll.forEach(function(l) {
-                    if (l !== link) {
-                        l.classList.remove('active');
-                    }
-                });
-            }, 10);
         });
     });
 
