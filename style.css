@@ -2294,10 +2294,11 @@ a {
     
     /* Show hamburger on mobile */
     .hamburger {
-        display: flex;
+        display: flex !important;
+        z-index: 1002;
     }
     
-    /* Hide desktop nav links */
+    /* Hide desktop nav links - slide from right */
     .nav-links {
         position: fixed;
         top: 0;
@@ -2315,6 +2316,8 @@ a {
         overflow-y: auto;
         align-items: flex-start;
         justify-content: flex-start;
+        z-index: 1001;
+        display: flex !important;
     }
     
     /* Active state - slide in */
