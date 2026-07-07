@@ -74,30 +74,91 @@
     });
 
     // ============================================================
-    // 3. ACTIVE NAV LINK (highlight current section)
+    // 3. ACTIVE NAV LINK - FIXED FOR DESKTOP (instant removal)
     // ============================================================
     const sections = document.querySelectorAll('section[id]');
+    const navLinksAll = document.querySelectorAll('.nav-links a');
 
-    window.addEventListener('scroll', function() {
+    // Store currently active link
+    let currentActiveLink = null;
+
+    // Function to update active link - INSTANT removal on desktop
+    function updateActiveLink() {
         let current = '';
+        const scrollPosition = window.pageYOffset + 100;
+        
         sections.forEach(function(section) {
             const sectionTop = section.offsetTop - 150;
-            if (window.pageYOffset >= sectionTop) {
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                 current = section.getAttribute('id');
             }
         });
 
-        document.querySelectorAll('.nav-links a').forEach(function(link) {
+        // INSTANTLY remove active class from all links (no delay)
+        navLinksAll.forEach(function(link) {
             link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === '#' + current) {
-                link.classList.add('active');
-            }
+        });
+
+        // INSTANTLY add active class to matching link
+        if (current) {
+            navLinksAll.forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === '#' + current) {
+                    link.classList.add('active');
+                    currentActiveLink = link;
+                }
+            });
+        } else {
+            currentActiveLink = null;
+        }
+    }
+
+    // Update on scroll with requestAnimationFrame for performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateActiveLink();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Update on load
+    window.addEventListener('load', function() {
+        updateActiveLink();
+    });
+
+    // ============================================================
+    // 4. FIX: CLICK HANDLER FOR NAV LINKS - INSTANT ACTIVE STATE
+    // ============================================================
+    navLinksAll.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            // INSTANTLY remove active class from ALL links
+            navLinksAll.forEach(function(l) {
+                l.classList.remove('active');
+            });
+            
+            // INSTANTLY add active class to clicked link
+            this.classList.add('active');
+            currentActiveLink = this;
+
+            // Remove active class from other links (cleanup)
+            setTimeout(function() {
+                navLinksAll.forEach(function(l) {
+                    if (l !== link) {
+                        l.classList.remove('active');
+                    }
+                });
+            }, 10);
         });
     });
 
     // ============================================================
-    // 4. SMOOTH SCROLL FOR ANCHOR LINKS (with offset for fixed nav)
+    // 5. SMOOTH SCROLL FOR ANCHOR LINKS (with offset for fixed nav)
     // ============================================================
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
@@ -124,7 +185,7 @@
     });
 
     // ============================================================
-    // 5. CONTACT FORM - WHATSAPP REDIRECT
+    // 6. CONTACT FORM - WHATSAPP REDIRECT
     // ============================================================
     const form = document.getElementById('contactForm');
 
@@ -181,7 +242,7 @@
     }
 
     // ============================================================
-    // 6. HERO BUTTON SCROLL
+    // 7. HERO BUTTON SCROLL
     // ============================================================
     const heroBtn = document.querySelector('.hero-btn');
     if (heroBtn) {
@@ -198,7 +259,7 @@
     }
 
     // ============================================================
-    // 7. VIEW ALL BUTTON
+    // 8. VIEW ALL BUTTON
     // ============================================================
     const viewBtn = document.querySelector('.view-btn');
     if (viewBtn) {
@@ -215,7 +276,7 @@
     }
 
     // ============================================================
-    // 8. CONSOLE WELCOME (brand signature)
+    // 9. CONSOLE WELCOME (brand signature)
     // ============================================================
     console.log('🛍️ A1 Fashion — Premium Men\'s & Kid\'s Wear');
     console.log('📍 Shop No.7, GF, Abhishek Complex, Ahmedabad');
