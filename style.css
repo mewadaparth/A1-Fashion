@@ -2411,3 +2411,34 @@ a {
         height: 2.5px;
     }
 }
+/* ============================================================
+   FIX: SMALLER HAMBURGER BUTTON ON MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .hamburger {
+        padding: 4px 4px !important;
+        gap: 3px !important;
+        min-width: auto !important;
+        width: auto !important;
+    }
+    
+    .hamburger span {
+        width: 20px !important;
+        height: 2px !important;
+        border-radius: 2px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hamburger {
+        padding: 3px 3px !important;
+        gap: 2.5px !important;
+    }
+    
+    .hamburger span {
+        width: 16px !important;
+        height: 1.5px !important;
+        border-radius: 2px !important;
+    }
+}
