@@ -916,104 +916,6 @@ a {
 }
 
 /* ============================================================
-   PRODUCTS – EDITORIAL FASHION BRAND (Asymmetrical Shape)
-   ============================================================ */
-.products {
-    padding: 100px 0;
-    background: #ffffff;
-    position: relative;
-}
-
-/* Product Heading */
-.product-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 50px;
-}
-
-.product-heading .section-badge {
-    display: inline-block;
-    background: rgba(103, 199, 198, 0.12);
-    color: #265D7A;
-    padding: 6px 18px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    border: 1px solid rgba(103, 199, 198, 0.15);
-}
-
-.product-heading .section-badge i {
-    margin-right: 6px;
-}
-
-.product-heading .section-title {
-    font-size: 2.6rem;
-    font-weight: 800;
-    color: #13293D;
-    letter-spacing: -1px;
-}
-
-.product-heading .section-title span {
-    color: #67C7C6;
-}
-
-.view-btn {
-    padding: 12px 28px;
-    border-radius: 50px;
-    text-decoration: none;
-    color: #ffffff;
-    background: #13293D;
-    transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    font-weight: 600;
-    font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-}
-
-.view-btn i {
-    transition: 0.3s ease;
-}
-
-.view-btn:hover {
-    background: #67C7C6;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(103, 199, 198, 0.3);
-}
-
-.view-btn:hover i {
-    transform: translateX(5px);
-}
-
-/* Products Slider */
-.products-slider {
-    display: flex;
-    gap: 28px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 20px;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Custom Scrollbar */
-.products-slider::-webkit-scrollbar {
-    height: 5px;
-}
-
-.products-slider::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 20px;
-}
-
-.products-slider::-webkit-scrollbar-thumb {
-    background: #13293D;
-    border-radius: 20px;
-}
-
-/* ============================================================
    PRODUCTS – EDITORIAL FASHION BRAND (Dark Theme)
    ============================================================ */
 .products {
@@ -2375,5 +2277,122 @@ a {
     }
     .footer-copyright p {
         font-size: 11px;
+    }
+}
+
+/* ============================================================
+   MOBILE NAVIGATION FIX - KEEP ALL LINKS VISIBLE
+   ============================================================ */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 6px 12px;
+        border-radius: 40px;
+        width: 95%;
+        top: 10px;
+        overflow: hidden;
+    }
+    
+    .navbar .container {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        gap: 6px;
+    }
+    
+    .navbar .container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    
+    .nav-brand {
+        font-size: 0.9rem;
+        flex-shrink: 0;
+        margin-right: 4px;
+    }
+    
+    .nav-links {
+        gap: 2px;
+        flex-shrink: 0;
+    }
+    
+    .nav-links a {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .nav-cta {
+        padding: 6px 12px !important;
+        font-size: 0.7rem !important;
+        flex-shrink: 0;
+    }
+    
+    .nav-cta i {
+        margin-right: 3px;
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 5px 10px;
+        border-radius: 35px;
+        width: 96%;
+    }
+    
+    .nav-brand {
+        font-size: 0.8rem;
+        margin-right: 3px;
+    }
+    
+    .nav-links a {
+        padding: 5px 8px;
+        font-size: 0.6rem;
+    }
+    
+    .nav-cta {
+        padding: 5px 10px !important;
+        font-size: 0.6rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 4px 8px;
+        border-radius: 30px;
+        width: 98%;
+        top: 8px;
+    }
+    
+    .nav-brand {
+        font-size: 0.7rem;
+        margin-right: 2px;
+    }
+    
+    .nav-brand span {
+        font-size: 0.7rem;
+    }
+    
+    .nav-links {
+        gap: 1px;
+    }
+    
+    .nav-links a {
+        padding: 4px 6px;
+        font-size: 0.5rem;
+        border-radius: 30px;
+    }
+    
+    .nav-cta {
+        padding: 4px 8px !important;
+        font-size: 0.5rem !important;
+        border-radius: 30px !important;
+    }
+    
+    .nav-cta i {
+        margin-right: 2px;
+        font-size: 0.5rem;
     }
 }
